@@ -1,1 +1,17 @@
-Amazing World!
+<h1> Ins Demo </h1>
+
+{% load static %}
+
+<header>
+    <div>
+        <a href="{% url 'make_post' %}"> Make Post </a>
+    </div>
+</header>
+
+<div>
+    {% for post in object_list %}
+        <a href="{% url 'post' post.pk %}">
+            <img src="{{ post.image.url }}" width=200 height=200>
+        </a>
+    {% endfor %}
+</div>
