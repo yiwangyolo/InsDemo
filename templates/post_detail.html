@@ -1,7 +1,13 @@
-<span> {{ object.title }} </span>
-<div>
-    <img src="http://{{ request.META.HTTP_HOST }}/{{ post.image.url }}" alt="{{ post.title }}" width=200 height=200>
-    <a href="{% url 'edit_post' object.pk %}">Edit Post</a>
-    <a href="{% url 'delete_post' object.pk %}">Delete Post</a>
-</div>
+{% extends "base.html" %}
 
+{% block content %}
+
+	<span> {{ object.title }} </span>
+
+	<div>
+		<img src="http://{{ request.META.HTTP_HOST }}/{{ post.image.url }}" alt="{{ post.title }}" width=200 height=200>
+		<a href="{% url 'edit_post' object.pk %}">Edit Post</a>
+		<a href="{% url 'delete_post' object.pk %}">Delete Post</a>
+	</div>
+
+{% endblock content %}

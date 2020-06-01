@@ -1,33 +1,32 @@
-{% load static %}
+{% extends "base.html" %}
 
-<header>
-    <ul>
-        {% if request.user.is_authenticated %}
-        <li>
-            <p>Hi, {{ request.user.username }}</p>
-        </li>
-        <li>
-            <a href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% else %}
-        <li>
-            <a href="{% url 'login' %}">Login</a>
-        </li>
-        <li>
-            <a href="{% url 'sign_up' %}">Sign Up</a>
-        </li>
-        {% endif %}
-    </ul>
+{% block content %}
 
-    <div>
-        <a href="{% url 'make_post' %}"> Make Post </a>
-    </div>
-</header>
+	<div class="card-listing">
+		{% for post in object_list %}
+			<div class="row">
+				<div class="card view-update {{ post.pk }}">
+					<div class="card__panel-head">
+						<div class="poster__info">
+							<a href="/" class="poster__name">
+								{% if post.author.profile_pic %}
+									<img src="{{ post.author.profile_pic.url }}" alt="author pic" class="poster__profilepic">
+								{% endif %}
+								{{ post.author.username }}
+							</a>
 
-<div>
-    {% for post in object_list %}
-        <a href="{% url 'post' post.pk %}">
-            <img src="{{ post.image.url }}" width=200 height=200>
-        </a>
-    {% endfor %}
-</div>
+							<span class="poster__timestamp">
+								{{ post.posted_on|timesince }}
+							</span>
+						</div>
+					</div>
+
+					<a href="{% url 'post' post.pk %}">
+						<img src="{{ post.image.url }}" alt="post image" class="card__main-image">
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
