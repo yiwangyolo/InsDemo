@@ -8,7 +8,7 @@
 				<div class="card view-update {{ post.pk }}">
 					<div class="card__panel-head">
 						<div class="poster__info">
-							<a href="/" class="poster__name">
+							<a href="{% url 'user_profile' request.user.pk %}" class="poster__name">
 								{% if post.author.profile_pic %}
 									<img src="{{ post.author.profile_pic.url }}" alt="author pic" class="poster__profilepic">
 								{% endif %}
@@ -35,7 +35,7 @@
 							<a class="view-more"></a>
 							{% for comment in post.comments.all %}
 								<li class="comment-list__comment">
-									<a href="/" class="user">
+									<a href="{% url 'user_profile' comment.user.pk %}" class="user">
 										{{ comment.user.username }}
 									</a>
 									<span class="comment">{{ comment.comment }}</span>

@@ -8,7 +8,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				{% if request.user.is_authenticated %}
 					<li class="user-name">
-						<p>Hi, <a href="/">{{ request.user.username }}</a></p>
+						<p>Hi, <a href="{% url 'user_profile' request.user.pk %}">{{ request.user.username }}</a></p>
 					</li>
 					<li class="">
 						<a href="{% url 'make_post' %}">Make Post</a>

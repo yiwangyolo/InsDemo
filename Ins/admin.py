@@ -3,30 +3,30 @@ from Ins.models import Post, InsUser, Comment, Like, UserConnection
 
 # Register your models here.
 class CommentInline(admin.StackedInline):
-    model = Comment
+	model = Comment
 
 class LikeInline(admin.StackedInline):
-    model = Like
+	model = Like
 
 class PostAdmin(admin.ModelAdmin):
-    inlines = [
-        CommentInline,
-        LikeInline
-    ]
+	inlines = [
+		CommentInline,
+		LikeInline
+	]
 
 class FollowingInline(admin.StackedInline):
-    model = UserConnection
-    fk_name = 'creator'
+	model = UserConnection
+	fk_name = 'creator'
 
 class FollowerInline(admin.StackedInline):
-    model = UserConnection
-    fk_name = 'following'
+	model = UserConnection
+	fk_name = 'following'
 
 class UserAdmin(admin.ModelAdmin):
-    inlines = [
-        FollowingInline,
-        FollowerInline
-    ]
+	inlines = [
+		FollowingInline,
+		FollowerInline
+	]
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(InsUser, UserAdmin)

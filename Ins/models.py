@@ -13,7 +13,7 @@ class InsUser(AbstractUser):
 		blank = True
 	)
 
-	def get_connection(self):
+	def get_connections(self):
 		connections = UserConnection.objects.filter(creator = self)
 		return connections
 

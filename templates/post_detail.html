@@ -4,9 +4,9 @@
 	<div class="row single-post">
 		<div class="single-post-card view-update {{ object.pk }}">
 			<div class="header">
-				<a href="/">
-					{% if object.author.user_pic %}
-						<img class="picture-circle--medium" src="http://{{ request.META.HTTP_HOST }}/{{ object.author.user_pic.url }}" alt="author pic">
+				<a href="{% url 'user_profile' request.user.pk %}">
+					{% if object.author.profile_pic %}
+						<img class="picture-circle--medium" src="http://{{ request.META.HTTP_HOST }}/{{ object.author.profile_pic.url }}" alt="profile pic">
 					{% endif %}
 					{{ object.author.username }}
 				</a>
